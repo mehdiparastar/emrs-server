@@ -1,11 +1,15 @@
 import { Module, ValidationPipe } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AuthModule } from './authentication/auth.module';
+import { DatabaseModule } from './database.module';
 import { AllExceptionFilter } from './exceptions/all-exceptions.filter';
-import { AppDataSource } from './data-source';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
+import { JwtAccessModule } from './JWT/jwt-access.module';
+import { JwtRefreshModule } from './JWT/jwt-refresh.module';
+import { DICOMModule } from './DICOM/dicom.module';
 
 const nodeENV = process.env.NODE_ENV;
 
@@ -15,7 +19,12 @@ const nodeENV = process.env.NODE_ENV;
       isGlobal: true,
       envFilePath: `.${nodeENV}.env`,
     }),
-    TypeOrmModule.forRoot(AppDataSource.options),
+    DatabaseModule,
+    JwtAccessModule,
+    JwtRefreshModule,
+    UsersModule,
+    AuthModule,
+    DICOMModule
   ],
   controllers: [AppController],
   providers: [
@@ -33,3 +42,4 @@ const nodeENV = process.env.NODE_ENV;
   ],
 })
 export class AppModule { }
+

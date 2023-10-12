@@ -4,12 +4,14 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
+  console.log('start')
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
     .setTitle('EMRS api')
     .setDescription('The Electronic Medical Record System API description')
-    .setVersion('1.0')    
+    .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
