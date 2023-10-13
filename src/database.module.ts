@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm";
 import { UserPermissionRequest } from "./users/entities/permission-requests.entity";
 import { User } from "./users/entities/user.entity";
+import { FileInfo } from "./Files/entities/fileInfo.entity";
 
 @Module({
     imports: [
@@ -19,6 +20,7 @@ import { User } from "./users/entities/user.entity";
                     entities: [
                         User,
                         UserPermissionRequest,
+                        FileInfo
                     ],
                     synchronize: true,
                     // synchronize: false,

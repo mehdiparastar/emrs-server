@@ -9,7 +9,7 @@ import { AllExceptionFilter } from './exceptions/all-exceptions.filter';
 import { UsersModule } from './users/users.module';
 import { JwtAccessModule } from './JWT/jwt-access.module';
 import { JwtRefreshModule } from './JWT/jwt-refresh.module';
-import { DICOMModule } from './DICOM/dicom.module';
+import { FilesModule } from './Files/files.module';
 
 const nodeENV = process.env.NODE_ENV;
 
@@ -24,7 +24,7 @@ const nodeENV = process.env.NODE_ENV;
     JwtRefreshModule,
     UsersModule,
     AuthModule,
-    DICOMModule
+    FilesModule
   ],
   controllers: [AppController],
   providers: [

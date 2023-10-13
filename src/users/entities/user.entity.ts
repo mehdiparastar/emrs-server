@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { authTypeEnum } from '../../enum/authType.enum';
 import { UserPermissionRequest } from './permission-requests.entity';
+import { FileInfo } from 'src/Files/entities/fileInfo.entity';
 
 @Entity()
 export class User {
@@ -72,4 +73,7 @@ export class User {
     { cascade: true },
   )
   approves: UserPermissionRequest[];
+
+  @OneToMany(() => FileInfo, (file) => file.owner, { cascade: true })
+  files: FileInfo[];
 }

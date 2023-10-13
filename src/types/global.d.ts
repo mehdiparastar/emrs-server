@@ -56,4 +56,7 @@ declare global {
         accessToken: string;
         refreshToken: string;
     }
+
+    type SocketWithAuth = Socket & AuthPayload;
+    type RequestWithAuth = Request & AuthPayload;
 }
